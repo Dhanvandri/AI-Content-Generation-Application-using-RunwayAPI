@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gallery</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Gallery for {{ user_id }}</h1>
+
+    <h2>Videos</h2>
+    <div class="video-container">
+        {% for video in videos %}
+            <video controls>
+                <source src="{{ video }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        {% else %}
+            <p>No videos available.</p>
+        {% endfor %}
+    </div>
+
+    <h2>Images</h2>
+    <div class="image-container">
+        {% for image in images %}
+            <img src="{{ image }}" alt="Generated Image">
+        {% else %}
+            <p>No images available.</p>
+        {% endfor %}
+    </div>
+
+    <div class="centered">
+        <a href="{{ url_for('prompt', user_id=user_id) }}">Generate More Content</a>
+    </div>
+</body>
+</html>
